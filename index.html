@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Sten, sax, påse</title>
+</head>
+<body>
+
+    
+
+    <div class="app-container">
+        <h1>Sten, Sax, Påse</h1>
+        <!-- Startmeny -->
+        <div class="start-menu hidden">
+            <input type="text" id="player-name-input" class="input" value ="Spelare" placeholder="Ditt namn" required>
+            <input type="number" id="wins-input" class="input" value="3" placeholder="Antal vinster" min="1" max="5" required>
+            
+        </div>
+
+        <!-- Spelbrädet -->
+        <div class="game-board">
+            <div class="game-result_div">
+                <p class="score-board">0 - 0</p>            
+
+                <p id="player-name" class="name-tag">spelare</p>
+                <div class="player-choice-presents_div choice-result-box"></div>
+                
+                <p id="computer-name" class="name-tag">dator</p>
+                <div class="computer-choice-presents_div choice-result-box"></div>
+                
+                <p class="result-info">Gör ditt val</p>
+                
+            </div>
+            <div class="btn_div">
+                
+                <div class="upper-btn_div">
+                    <button id="confirm-btn" class="upper-btn">OK</button>
+                    <button id="back-btn" class="upper-btn">Back</button>
+                </div>
+
+                <button id="choice-btn-rock" class="choice-btn">sten</button>
+                <button id="choice-btn-scissor" class="choice-btn">sax</button>
+                <button id="choice-btn-paper" class="choice-btn">påse</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/app.js"></script>
+</body>
+</html>
