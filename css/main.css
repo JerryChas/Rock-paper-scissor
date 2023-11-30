@@ -15,9 +15,11 @@ body {
 
 
 .app-container {
-    background-color: rgb(148, 148, 148);
-    box-shadow: 5px 5px 0px 4px rgb(124, 124, 124);
+    background-color: rgb(129, 129, 129);
+    box-shadow: 1px 1px 1px 2px rgb(76, 76, 76);
     border-radius: 5px;
+    border-right: 7px groove rgb(147, 147, 147);
+    border-bottom: 7px groove rgb(147, 147, 147);
     
     display: grid;
     grid-template-columns:1fr repeat(2, 1fr) 1fr;
