@@ -16,8 +16,8 @@ body {
 
 .app-container {
     background-color: rgb(148, 148, 148);
-    box-shadow: 1px 1px 10px #ffffff;
-    border-radius: 20px;
+    box-shadow: 5px 5px 0px 4px rgb(124, 124, 124);
+    border-radius: 5px;
     
     display: grid;
     grid-template-columns:1fr repeat(2, 1fr) 1fr;
