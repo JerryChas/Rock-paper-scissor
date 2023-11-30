@@ -251,7 +251,7 @@ rockBtn.addEventListener('click',function(){
     if (okBtnState === '' || okBtnState === 'playRound'){
         playerChoice = choices[0];
         showSelectedChoice(playerChoiceShowbox ,'❔');
-        readyToConfirm('playRound', `Spela med ${playerChoice}?`);
+        readyToConfirm('playRound', `Tryck OK för att spela`);
     }else if (okBtnState === 'newRound'){
         console.log('choiceBtn = INAKTIV')
     }
@@ -262,7 +262,7 @@ scissorBtn.addEventListener('click',function(){
     if (okBtnState === '' || okBtnState === 'playRound'){
         playerChoice = choices[1];
         showSelectedChoice(playerChoiceShowbox ,'❔');
-        readyToConfirm('playRound',`Spela med ${playerChoice}?`);
+        readyToConfirm('playRound',`Tryck OK för att spela`);
     }else if (okBtnState === 'newRound'){
         console.log('choiceBtn = INAKTIV')
     }
@@ -272,7 +272,7 @@ paperBtn.addEventListener('click',function(){
     if (okBtnState === '' || okBtnState === 'playRound'){
         playerChoice = choices[2];
         showSelectedChoice(playerChoiceShowbox ,'❔');
-        readyToConfirm('playRound',`Spela med ${playerChoice}?`);
+        readyToConfirm('playRound',`Tryck OK för att spela`);
     }else if (okBtnState === 'newRound'){
         console.log('choiceBtn = INAKTIV')
     }
