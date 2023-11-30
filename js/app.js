@@ -270,13 +270,13 @@ function handleChoiceButtonClick(clickedBtn) {
 }
 
 function handleOkButtonClick() {
-    const activatedBtn = document.querySelector('.choice-btn-activated');
-    // Ta bort klassen 'choice-btn-activated' från den aktuella knappen
-    if (activatedBtn) {
-        activatedBtn.classList.remove('choice-btn-activated');
-    }
     if (okBtnState === 'playRound') {
         confirm(playerChoice, playRound);
+        // Ta bort klassen 'choice-btn-activated' från den aktuella knappen
+        const activatedBtn = document.querySelector('.choice-btn-activated');
+        if (activatedBtn) {
+            activatedBtn.classList.remove('choice-btn-activated');
+        }
     } else if (okBtnState === 'newRound') {
         confirm('newRound', newRound);
     } else if (okBtnState === 'newGame') {
