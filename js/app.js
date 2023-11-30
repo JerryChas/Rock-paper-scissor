@@ -45,12 +45,13 @@ function toggleClass(element, className) {
     console.log('\n ------toggleClass()------')
 
     // Ta bort klassen från alla knappar med klassen 'choice-btn-activated'
-    const activatedBtns = document.querySelectorAll('.choice-btn-activated');
-    activatedBtns.forEach(btn => btn.classList.remove('choice-btn-activated'));
+    const activatedBtns = document.querySelectorAll(`.${className}`);
+    activatedBtns.forEach(btn => btn.classList.remove(`${className}`));
 
-    // Lägg till klassen på den klickade knappen
+    // Annars lägg till klassen på den klickade knappen
     element.classList.add(className);
 }
+
 
 //Genererar slumpmässigt val
 function generateRandomChoice() {
@@ -98,13 +99,15 @@ function confirm(subject, callback) {
 //ready för att bekräfta
 function readyToConfirm(okBtnStateValue, infoTextString) {
     console.log ('\n ------readyToConfirm()------')
-    
+    toggleClass(okBtn, 'upper-btn-activated');
+
     //Bekräftelseförfrågan i text
     editInfoText(`${infoTextString}`);
     
     //bestämmer OK-knappens läge
     okBtnState = okBtnStateValue
     console.log(`okBtnState = ${okBtnState}`)
+
     
 }
 //Nytt spel (nollar scoreboard)
@@ -125,16 +128,16 @@ function newGame() {
 //Ny runda
 function newRound(){
     console.log ('\n ------newRound()------')
-
+    
     //nollställer OK-knappen
     okBtnState = '';
-
+    
     //ändrar infotext
     editInfoText(`Gör ditt val`)
-
+    
     //adderar 1 till antal rundor
     round++;
-    
+
     //generar nytt val för datorn
     computerChoice = generateRandomChoice();
     
@@ -143,6 +146,8 @@ function newRound(){
     
     showSelectedChoice(playerChoiceShowbox, '❔',false)
     showSelectedChoice(computerChoiceShowbox, '❓', true)
+
+
     
 }
 
@@ -253,6 +258,7 @@ btnDiv.addEventListener('click', function (event) {
     if (targetBtn.classList.contains('choice-btn')) {
         handleChoiceButtonClick(targetBtn);
     } else if (targetBtn === okBtn) {
+        okBtn.classList.remove('upper-btn-activated')
         handleOkButtonClick();
     }
 });
@@ -267,9 +273,11 @@ function handleChoiceButtonClick(clickedBtn) {
     } else if (okBtnState === 'newRound') {
         console.log('choiceBtn = INAKTIV');
     }
+    
 }
 
 function handleOkButtonClick() {
+    
     if (okBtnState === 'playRound') {
         confirm(playerChoice, playRound);
         // Ta bort klassen 'choice-btn-activated' från den aktuella knappen

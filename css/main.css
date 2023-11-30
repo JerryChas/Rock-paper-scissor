@@ -174,8 +174,6 @@ h1 {
     gap: 3em;
     
 }
-.upper-btn-activated {
-}
 .upper-btn {
     box-shadow: 1px 1px 1px 1px #000;
     border-radius: 10px;
@@ -187,6 +185,17 @@ h1 {
         transform: translate(2px, 2px) rotate(-20deg);
     }
 }
+.upper-btn-activated {
+    box-shadow: 1px 1px 5px 1px rgb(27, 226, 24);
+    animation: ready-to-confirm 1500ms ease-in infinite alternate;
+}
+@keyframes ready-to-confirm {
+    0%{}
+    100% {
+        box-shadow: 1px 1px 1px 1px rgb(21, 192, 18);
+    }
+}
+
 
 .hidden {
     display: none;
