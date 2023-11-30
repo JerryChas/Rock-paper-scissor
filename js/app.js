@@ -25,6 +25,7 @@ const computerChoiceShowbox = document.querySelector('.computer-choice-presents_
 
 const infoText = document.querySelector('.result-info');
 
+const btnDiv = document.querySelector('.btn_div');
 const okBtn = document.getElementById('confirm-btn');
 const backBtn = document.getElementById('back-btn');
 
@@ -41,15 +42,14 @@ paperBtn.textContent = choices[2]
 //*------FUNKTIONER------*//
 // Tar bort / Lägger till klass
 function toggleClass(element, className) {
-    console.log ('\n ------toggleClass()------')
+    console.log('\n ------toggleClass()------')
 
-    if (element.classList.contains(className)) {
-        // Om klassen redan finns, ta bort den för att visa elementet
-        element.classList.remove(className);
-    } else {
-        // Annars lägg till klassen för att dölja elementet
-        element.classList.add(className);
-    }
+    // Ta bort klassen från alla knappar med klassen 'choice-btn-activated'
+    const activatedBtns = document.querySelectorAll('.choice-btn-activated');
+    activatedBtns.forEach(btn => btn.classList.remove('choice-btn-activated'));
+
+    // Lägg till klassen på den klickade knappen
+    element.classList.add(className);
 }
 
 //Genererar slumpmässigt val
@@ -68,15 +68,14 @@ function editInfoText(string){
     infoText.textContent = string
 }
 
-
 //Visar valen
 function showSelectedChoice(choiceShowbox, choice, isPlayerChoice) {
     console.log ('\n ------showSelectedChoice()------')
-    
+
     
     //Visar valet på skärmen
     choiceShowbox.textContent = choice;
-    
+
     //visar valen i konsolen
     if(!isPlayerChoice){
         
@@ -246,53 +245,47 @@ function showFinalResult() {
 //Ny runda startar
 newRound();
 
-// knapp för -STEN-
-rockBtn.addEventListener('click',function(){ 
-    if (okBtnState === '' || okBtnState === 'playRound'){
-        playerChoice = choices[0];
-        showSelectedChoice(playerChoiceShowbox ,'❔');
-        readyToConfirm('playRound', `Tryck OK för att spela`);
-    }else if (okBtnState === 'newRound'){
-        console.log('choiceBtn = INAKTIV')
-    }
-       
-})
-// knapp för -SAX-
-scissorBtn.addEventListener('click',function(){ 
-    if (okBtnState === '' || okBtnState === 'playRound'){
-        playerChoice = choices[1];
-        showSelectedChoice(playerChoiceShowbox ,'❔');
-        readyToConfirm('playRound',`Tryck OK för att spela`);
-    }else if (okBtnState === 'newRound'){
-        console.log('choiceBtn = INAKTIV')
-    }
-})
-// knapp för -PÅSE-
-paperBtn.addEventListener('click',function(){ 
-    if (okBtnState === '' || okBtnState === 'playRound'){
-        playerChoice = choices[2];
-        showSelectedChoice(playerChoiceShowbox ,'❔');
-        readyToConfirm('playRound',`Tryck OK för att spela`);
-    }else if (okBtnState === 'newRound'){
-        console.log('choiceBtn = INAKTIV')
-    }
-})
 
-// knapp för -OK-
-okBtn.addEventListener('click', function() {
+btnDiv.addEventListener('click', function (event) {
+    const targetBtn = event.target;
     
-    if(okBtnState === 'playRound'){
-        // Anropa confirm-funktionen
-        confirm(playerChoice, playRound)
-    } else if (okBtnState === 'newRound'){
+    // Kontrollera om klicket var på en knapp
+    if (targetBtn.classList.contains('choice-btn')) {
+        handleChoiceButtonClick(targetBtn);
+    } else if (targetBtn === okBtn) {
+        handleOkButtonClick();
+    }
+});
+function handleChoiceButtonClick(clickedBtn) {
+    
+    if (okBtnState === '' || okBtnState === 'playRound') {
+        const choiceIndex = Array.from(btnDiv.querySelectorAll('.choice-btn')).indexOf(clickedBtn);
+        playerChoice = choices[choiceIndex];
+        showSelectedChoice(playerChoiceShowbox, playerChoice);
+        readyToConfirm('playRound', 'Tryck OK för att spela');
+        toggleClass(clickedBtn, 'choice-btn-activated');
+    } else if (okBtnState === 'newRound') {
+        console.log('choiceBtn = INAKTIV');
+    }
+}
+
+function handleOkButtonClick() {
+    const activatedBtn = document.querySelector('.choice-btn-activated');
+    // Ta bort klassen 'choice-btn-activated' från den aktuella knappen
+    if (activatedBtn) {
+        activatedBtn.classList.remove('choice-btn-activated');
+    }
+    if (okBtnState === 'playRound') {
+        confirm(playerChoice, playRound);
+    } else if (okBtnState === 'newRound') {
         confirm('newRound', newRound);
     } else if (okBtnState === 'newGame') {
         confirm('newGame', newGame);
     } else {
-        console.log('okBtn = INAKTIV')
+        console.log('okBtn = INAKTIV');
     }
-});
-    
+}
+
 
 
 // knapp för -Back-
