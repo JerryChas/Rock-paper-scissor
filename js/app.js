@@ -8,7 +8,7 @@ let playerWin = 0;
 let cpuWin = 0;
 let tie = 0;
 let round = 0;
-let winsNeeded = 2;
+let winsNeeded = 3;
 let gameOver = 0;
 
 
