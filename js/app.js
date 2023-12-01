@@ -193,16 +193,22 @@ function winsRound(playerChoice, computerChoice) {
          console.log('Oavgjort!');
          //adderar 1 till oavgjort
          tie++;
+         //startar animation
+         winOrLooseAnimation('tied-round')
     } else if (winningCombinations[playerChoice] === computerChoice) {
         // Om spelarens val besegrar datorns val
         console.log("Du vinner!");
         //adderar 1 till vinst
         playerWin++;
+        //startar animation
+        winOrLooseAnimation('player-wins-round')
     } else {
         // Annars vinner datorn
         console.log("Datorn vinner!");
         //adderar 1 till oavgjort
         cpuWin++;
+        //startar animation
+        winOrLooseAnimation('computer-wins-round')
     }
     //Uppdaterar poängtavlan
     scoreBoard.textContent = `${playerWin}  -  ${cpuWin}`
@@ -243,6 +249,14 @@ function showFinalResult() {
     }
 }
 
+//Väljer vilken animation som ska köras
+function winOrLooseAnimation(identifier) {
+    console.log('\n ------winOrLooseAnimation()------')  
+
+    const screenAnimation = document.querySelector('.win-or-loose');
+    screenAnimation.style.animationName = identifier;
+}
+
 
 //!----------------------------------------!//
    //*-----------HUVUDPROGRAM-----------*//
@@ -277,6 +291,8 @@ function handleChoiceButtonClick(clickedBtn) {
 }
 
 function handleOkButtonClick() {
+    //nollställer animationen
+    winOrLooseAnimation('');
     
     if (okBtnState === 'playRound') {
         confirm(playerChoice, playRound);

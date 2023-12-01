@@ -79,6 +79,48 @@ h1 {
     height:60%;
     white-space: nowrap;
 }
+.win-or-loose {
+    animation: 800ms ease-in infinite alternate;
+}
+@keyframes player-wins-round {
+    0%,100%{
+        border: 1px solid rgb(108, 160, 29);
+    }
+    0% { 
+        background-color: rgb(155, 230, 43);
+        box-shadow: 0 0 10px rgb(155, 230, 43);
+    }
+    100%{
+        background-color: rgb(140, 208, 37);
+        box-shadow: 0 0 30px rgb(140, 208, 37);
+    }
+}
+@keyframes computer-wins-round {
+    0%,100% {
+        border: 1px solid rgb(214, 70, 70);
+    }
+    0% { 
+        background-color: rgb(253, 101, 101);
+        box-shadow: 0 0 10px rgb(252, 85, 85);
+    }
+    100%{
+        background-color: rgb(252, 70, 70);
+        box-shadow: 0 0 30px rgb(252, 70, 70);
+    }
+}
+@keyframes tied-round {
+    0%,100% {
+        border: 1px solid rgb(194, 194, 194);
+    }
+    0% { 
+        background-color: rgb(240, 240, 240);
+        box-shadow: 0 0 10px rgb(240, 240, 240);
+    }
+    100%{
+        background-color: rgb(255, 255, 255);
+        box-shadow: 0 0 30px rgb(255, 255, 255);
+    }
+}
 
 .score-board {
     grid-row: 1;
