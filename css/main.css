@@ -188,12 +188,13 @@ h1 {
     }
 }
 .upper-btn-activated {
-    animation: ready-to-confirm 1500ms ease-out infinite alternate;
+    animation: ready-to-confirm 1000ms ease-out infinite alternate;
 }
 @keyframes ready-to-confirm {
     0%{}
     100% {
-        box-shadow: 1px 1px 6px 1px rgb(21, 192, 18);
+        box-shadow: 1px 1px 6px 1px rgb(25, 226, 22);
+        background-color: rgba(30, 241, 26, 0.549) ;
     }
 }
 
