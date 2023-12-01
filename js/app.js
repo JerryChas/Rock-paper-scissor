@@ -8,7 +8,7 @@ let playerWin = 0;
 let cpuWin = 0;
 let tie = 0;
 let round = 0;
-let winsNeeded = 3;
+let winsNeeded = 2;
 let gameOver = 0;
 
 
@@ -194,21 +194,21 @@ function winsRound(playerChoice, computerChoice) {
          //adderar 1 till oavgjort
          tie++;
          //startar animation
-         winOrLooseAnimation('tied-round')
+         winOrLooseAnimation('tied-round', 'OAVGJORT')
     } else if (winningCombinations[playerChoice] === computerChoice) {
         // Om spelarens val besegrar datorns val
         console.log("Du vinner!");
         //adderar 1 till vinst
         playerWin++;
         //startar animation
-        winOrLooseAnimation('player-wins-round')
+        winOrLooseAnimation('player-wins-round', 'VINST!')
     } else {
         // Annars vinner datorn
         console.log("Datorn vinner!");
         //adderar 1 till oavgjort
         cpuWin++;
         //startar animation
-        winOrLooseAnimation('computer-wins-round')
+        winOrLooseAnimation('computer-wins-round', 'FÖRLUST')
     }
     //Uppdaterar poängtavlan
     scoreBoard.textContent = `${playerWin}  -  ${cpuWin}`
@@ -218,15 +218,22 @@ function winsRound(playerChoice, computerChoice) {
 //Kolla vem som vunnit spelet
 function checkFinalWinner() {
     console.log ('\n ------checkFinalWinner()------')
+    const finalResult = document.querySelector('.result');
+    finalResult.style.fontSize = '2em';
     
     
     //kollar om någon har vunnit hela spelet
     if(playerWin === winsNeeded) {
         console.log(`${plrName} har VUNNIT!`)
         gameOver = 1
+        
+        winOrLooseAnimation('finale-win', '🏆</br>VINNARE!')
+
     } else if (cpuWin === winsNeeded) {
         console.log(`${plrName} har FÖRLORAT!`)
         gameOver = 1
+        winOrLooseAnimation('finale-lose', '☠️</br>FÖRLORARE!')
+
     } else {
         gameOver = 0;
     }
@@ -250,12 +257,17 @@ function showFinalResult() {
 }
 
 //Väljer vilken animation som ska köras
-function winOrLooseAnimation(identifier) {
+function winOrLooseAnimation(identifier, text) {
     console.log('\n ------winOrLooseAnimation()------')  
-
+    
     const screenAnimation = document.querySelector('.win-or-loose');
     screenAnimation.style.animationName = identifier;
+    
+    const resultAnimation = document.querySelector('.result');
+    resultAnimation.style.animationName = 'result-pulse';
+    resultAnimation.innerHTML = text;
 }
+
 
 
 //!----------------------------------------!//
@@ -292,7 +304,7 @@ function handleChoiceButtonClick(clickedBtn) {
 
 function handleOkButtonClick() {
     //nollställer animationen
-    winOrLooseAnimation('');
+    winOrLooseAnimation('', '');
     
     if (okBtnState === 'playRound') {
         confirm(playerChoice, playRound);

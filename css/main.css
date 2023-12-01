@@ -67,6 +67,7 @@ h1 {
 
 /* RESULTAT-RUTAN */
 .game-result_div {
+    position: relative;
     display: grid;
     /* grid-template-columns: repeat(3, 1fr); */
     grid-template-rows: repeat(4, fit-content);
@@ -121,6 +122,33 @@ h1 {
         box-shadow: 0 0 30px rgb(255, 255, 255);
     }
 }
+@keyframes finale-win {
+    0%,100%{
+        border: 1px solid rgb(108, 160, 29);
+    }
+    0% { 
+        background-color: rgb(188, 231, 71);
+        box-shadow: 0 0 10px rgb(155, 230, 43);
+    }
+    100%{
+        background-color: rgb(140, 208, 37);
+        box-shadow: 0 0 40px 3px rgb(140, 208, 37);
+    }
+}
+@keyframes finale-lose {
+    0%,100% {
+        border: 1px solid rgb(214, 70, 70);
+    }
+    0% { 
+        background-color: rgb(253, 25, 25);
+        box-shadow: 0 0 10px rgb(252, 85, 85);
+    }
+    100%{
+        background-color: rgb(146, 34, 34);
+        box-shadow: 0 0 30px rgb(252, 70, 70);
+    }
+}
+
 
 .score-board {
     grid-row: 1;
@@ -160,6 +188,28 @@ h1 {
     grid-column: 1 / span 2;
     font-size: 1.3em;
     
+}
+
+.result {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+    place-content: center;
+    animation: 800ms ease-in infinite alternate;
+}
+
+@keyframes result-pulse {
+    0%{
+
+        transform: translate(-50%, -50%) scale(1)
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1.5) translate(-35%, -70%);
+    }
 }
 
 /* KNAPPSATS */
