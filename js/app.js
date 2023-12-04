@@ -224,16 +224,26 @@ function checkFinalWinner() {
     
     //kollar om någon har vunnit hela spelet
     if(playerWin === winsNeeded) {
+        setInterval(() => {
+            setTimeout(function() {
+                navigator.vibrate([100, 200, 100, 200, 100, 200, 400, 100, 400]);
+            }, 100);
+            
+        }, 1000);
         console.log(`${plrName} har VUNNIT!`)
         gameOver = 1
-        
         winOrLooseAnimation('finale-win', '🏆</br>VINNARE!')
-
+        
+        
     } else if (cpuWin === winsNeeded) {
         console.log(`${plrName} har FÖRLORAT!`)
         gameOver = 1
         winOrLooseAnimation('finale-lose', '☠️</br>FÖRLORARE!')
-
+        setInterval(() => {
+            setTimeout(function() {
+                navigator.vibrate([200, 100, 200, 100, 400]);
+            }, 100);
+        }, 1000);
     } else {
         gameOver = 0;
     }
@@ -279,7 +289,6 @@ newRound();
 
 btnDiv.addEventListener('click', function (event) {
     const targetBtn = event.target;
-    
     // Kontrollera om klicket var på en knapp
     if (targetBtn.classList.contains('choice-btn')) {
         handleChoiceButtonClick(targetBtn);
@@ -296,6 +305,7 @@ function handleChoiceButtonClick(clickedBtn) {
         showSelectedChoice(playerChoiceShowbox, playerChoice);
         readyToConfirm('playRound', 'Tryck OK för att spela');
         toggleClass(clickedBtn, 'choice-btn-activated');
+        navigator.vibrate(60);
     } else if (okBtnState === 'newRound') {
         console.log('choiceBtn = INAKTIV');
     }
@@ -313,8 +323,10 @@ function handleOkButtonClick() {
         if (activatedBtn) {
             activatedBtn.classList.remove('choice-btn-activated');
         }
+        navigator.vibrate([50, 10, 50]);
     } else if (okBtnState === 'newRound') {
         confirm('newRound', newRound);
+        navigator.vibrate([200, 50, 100]);
     } else if (okBtnState === 'newGame') {
         confirm('newGame', newGame);
     } else {
