@@ -224,12 +224,10 @@ function checkFinalWinner() {
     
     //kollar om någon har vunnit hela spelet
     if(playerWin === winsNeeded) {
-        setInterval(() => {
-            setTimeout(function() {
-                navigator.vibrate([100, 200, 100, 200, 100, 200, 400, 100, 400]);
-            }, 100);
-            
-        }, 1000);
+    
+        setTimeout(function() {
+            navigator.vibrate([100, 200, 100, 200, 100, 200, 400, 100, 400]);
+        }, 100);
         console.log(`${plrName} har VUNNIT!`)
         gameOver = 1
         winOrLooseAnimation('finale-win', '🏆</br>VINNARE!')
@@ -239,11 +237,10 @@ function checkFinalWinner() {
         console.log(`${plrName} har FÖRLORAT!`)
         gameOver = 1
         winOrLooseAnimation('finale-lose', '☠️</br>FÖRLORARE!')
-        setInterval(() => {
-            setTimeout(function() {
-                navigator.vibrate([200, 100, 200, 100, 400]);
-            }, 100);
-        }, 1000);
+        setTimeout(function() {
+            navigator.vibrate([200, 100, 200, 100, 400]);
+        }, 100);
+        
     } else {
         gameOver = 0;
     }
